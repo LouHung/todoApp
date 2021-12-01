@@ -12,9 +12,13 @@ class taskController{
     post(req, res, next){
         const post = new model(req.body);
         try{
-            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
             const saveTask = post.save();
-            res.json(saveTask)
+            setTimeout(() =>{
+                model.find({},function(err,tasks){
+                    res.json(tasks) 
+            },1000)
+            },
+            );
 
         } catch (err){
             res.json({message:err})
@@ -26,12 +30,53 @@ class taskController{
         model.findOneAndRemove({_id: id}, function(err,data)
         {
             if(!err){
-                console.log("Deleted");
+                console.log(id);
             }
+            setTimeout(() =>{
+                model.find({},function(err,tasks){
+                    res.json(tasks) 
+            },1000)
+            },
+            );
         });
         // res.send('deleted')
         
-        console.log(id)
+        // console.log(id)
+    }
+    deleteAll(req, res, next){
+        console.log('deleteAlllllll')
+        model.remove({},function(err,tasks){
+            // res.json(tasks)
+            setTimeout(() =>{
+                model.find({},function(err,tasks){
+                    res.json(tasks) 
+            },1000)
+            },
+            );
+        }
+        )
+        
+    };
+    update(req, res, next) {
+        let id = req.body.id
+        let contentTask = req.body.task
+        console.log(id,contentTask)
+        let cond={_id:id}
+        model.findOneAndUpdate(cond,{task:contentTask},function(err,data){
+
+            if(!err){
+                console.log('update successfull')
+                setTimeout(() =>{
+                    model.find({},function(err,tasks){
+                        res.json(tasks) 
+                },1000)
+                },
+                );
+            }
+        })
+        // res.send('deleted')
+        
+        // console.log(id)
     }
 }
 module.exports = new taskController()

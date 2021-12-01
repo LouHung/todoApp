@@ -55,7 +55,21 @@ html{
     font-size: 2.7em;
     color:#26c9cb;
     cursor: pointer;
-    
+    transition: all 0.3s ease
+}
+.edit-place-block{
+    display: flex;
+    flex-direction: column-reverse;
+    transform: translate-y(-1em);
+    display: none;
+}
+.insert-place-btn__cancel,
+.insert-place-btn__confirm{
+
+}
+.insert-place-btn__cancel i{
+    color: rgb(190, 1, 1);
+    font-size: 2.3em;
 }
 .body-tasks-container{
     list-style: none;
@@ -89,6 +103,7 @@ html{
     padding: 0.2em 1em;
     cursor: pointer;
 }
+
 .body-task-item__btn-delete{
     background-color: rgb(190, 1, 1);
 }
