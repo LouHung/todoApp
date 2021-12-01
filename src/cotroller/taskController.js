@@ -1,6 +1,4 @@
 const model = require('../model/model')
-// const dirPath = path.join(__dirname);
-// const path = require('path');
 class taskController{
     get(req, res,next){
             model.find({},function(err,tasks){
@@ -9,6 +7,9 @@ class taskController{
             );
       
     }
+
+
+    
     post(req, res, next){
         const post = new model(req.body);
         try{
@@ -24,6 +25,8 @@ class taskController{
             res.json({message:err})
         }
     }
+
+
     delete(req, res, next) {
         let id = req.body.idTask
         // model.deleteOne({ _id: id })
@@ -39,10 +42,10 @@ class taskController{
             },
             );
         });
-        // res.send('deleted')
-        
-        // console.log(id)
     }
+
+
+
     deleteAll(req, res, next){
         console.log('deleteAlllllll')
         model.remove({},function(err,tasks){
@@ -53,10 +56,10 @@ class taskController{
             },1000)
             },
             );
-        }
-        )
-        
+        })
     };
+
+
     update(req, res, next) {
         let id = req.body.id
         let contentTask = req.body.task
@@ -74,9 +77,6 @@ class taskController{
                 );
             }
         })
-        // res.send('deleted')
-        
-        // console.log(id)
     }
 }
 module.exports = new taskController()
