@@ -3,8 +3,8 @@ const task = require('../routes/task')
 const render = require('../routes/render')
 function route(app){
       
-    app.use('/api',task)
-    app.use('/',render)
+    app.use('/',task)
+    // app.use('/',render)
 }
 
 
